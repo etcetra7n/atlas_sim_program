@@ -1,0 +1,21 @@
+### Python ###
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+build/
+dist/
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+### ROS2 ###
+install/
+log/
+
+# Colcon custom files
+COLCON_IGNORE
+AMENT_IGNORE
