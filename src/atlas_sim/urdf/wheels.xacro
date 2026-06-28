@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="wheel" params="name x y">
+
+<link name="${name}_wheel">
+
+  <visual>
+    <origin rpy="1.5708 0 0"/>
+    <geometry>
+      <cylinder radius="0.12"
+                length="0.08"/>
+    </geometry>
+  </visual>
+
+  <collision>
+    <origin rpy="1.5708 0 0"/>
+    <geometry>
+      <cylinder radius="0.12"
+                length="0.08"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="1"/>
+    <origin xyz="0 0 0"/>
+    <inertia
+      ixx="0.01"
+      iyy="0.01"
+      izz="0.01"
+      ixy="0"
+      ixz="0"
+      iyz="0"/>
+  </inertial>
+
+</link>
+
+<joint name="${name}_joint"
+       type="continuous">
+
+  <parent link="base_link"/>
+  <child link="${name}_wheel"/>
+
+  <origin xyz="${x} ${y} 0.12"/>
+
+  <axis xyz="0 1 0"/>
+
+</joint>
+
+</xacro:macro>
+
+<xacro:wheel name="front_left"  x="0.30"  y="0.25"/>
+<xacro:wheel name="front_right" x="0.30"  y="-0.25"/>
+<xacro:wheel name="rear_left"   x="-0.30" y="0.25"/>
+<xacro:wheel name="rear_right"  x="-0.30" y="-0.25"/>
+
+</robot>
