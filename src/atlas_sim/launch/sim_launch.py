@@ -10,9 +10,8 @@ import xacro
 
 world_name = "tugbot_depot"
 def generate_launch_description():
-
     pkg = get_package_share_directory(
-        "perception"
+        "atlas_sim"
     )
     
     world = os.path.join(
@@ -96,6 +95,7 @@ def generate_launch_description():
             )
         ]
     )
+
     cmd_vel_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
@@ -105,11 +105,43 @@ def generate_launch_description():
         output="screen"
     )
 
+    cam_view = TimerAction(
+        period=6.0,
+        actions=[
+            Node(
+                package='atlas_sim',
+                executable='cam_view',
+                name='cam_view',
+                output='screen',
+            ),
+            LogInfo(
+                msg="Camera view started"
+            ),
+        ]
+    )
+
+    controls = TimerAction(
+        period=7.0,
+        actions=[
+            Node(
+                package='atlas_sim',
+                executable='controls',
+                name='controls',
+                output='screen',
+            ),
+            LogInfo(
+                msg="Controls started"
+            ),
+        ]
+    )
+
     return LaunchDescription([
         gazebo,
         robot_state_publisher,
         spawn,
         depth_bridge,
         camera_info_bridge,
-        cmd_vel_bridge
+        cmd_vel_bridge,
+        cam_view,
+        controls
     ])

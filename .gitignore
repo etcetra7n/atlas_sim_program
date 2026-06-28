@@ -15,6 +15,7 @@ venv/
 ### ROS2 ###
 install/
 log/
+rosbag2*
 
 # Colcon custom files
 COLCON_IGNORE

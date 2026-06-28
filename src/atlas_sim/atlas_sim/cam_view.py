@@ -7,10 +7,9 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 
-
-class DepthViewer(Node):
+class CamView(Node):
     def __init__(self):
-        super().__init__("depth_viewer")
+        super().__init__("cam_view")
 
         self.bridge = CvBridge()
 
@@ -21,7 +20,7 @@ class DepthViewer(Node):
             10,
         )
 
-        self.get_logger().info("Depth viewer started")
+        self.get_logger().info("Camera Viewer started")
 
     def image_callback(self, msg: Image):
         try:
@@ -40,7 +39,6 @@ class DepthViewer(Node):
 
             # Ignore zeros when computing range
             valid = depth[depth > 0]
-
             if len(valid) == 0:
                 self.get_logger().warn(
                     "No valid depth pixels"
@@ -90,12 +88,9 @@ class DepthViewer(Node):
         except Exception as e:
             self.get_logger().error(str(e))
 
-
 def main(args=None):
     rclpy.init(args=args)
-
-    node = DepthViewer()
-
+    node = CamView()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
@@ -104,7 +99,6 @@ def main(args=None):
     cv2.destroyAllWindows()
     node.destroy_node()
     rclpy.shutdown()
-
 
 if __name__ == "__main__":
     main()

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>perception</name>
+  <name>atlas_sim</name>
   <version>0.0.1</version>
-  <description>Listener node</description>
+  <description>A Mars rover simulation environment for collecting training data</description>
 
   <maintainer email="etcetra7n@gmail.com">John Anchery</maintainer>
   <license>MIT</license>
