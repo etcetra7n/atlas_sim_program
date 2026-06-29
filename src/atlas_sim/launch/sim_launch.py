@@ -34,8 +34,9 @@ def generate_launch_description():
         cmd=[
             "gz",
             "sim",
-            world,
-            "-r"
+            "-s",
+            "-r",
+            world
         ],
         output="screen"
     )
@@ -50,7 +51,7 @@ def generate_launch_description():
     )
 
     spawn = TimerAction(
-        period=5.0,
+        period=4.0,
         actions=[
             Node(
                 package="ros_gz_sim",
@@ -106,7 +107,7 @@ def generate_launch_description():
     )
 
     cam_view = TimerAction(
-        period=6.0,
+        period=5.0,
         actions=[
             Node(
                 package='atlas_sim',
@@ -121,7 +122,7 @@ def generate_launch_description():
     )
 
     controls = TimerAction(
-        period=7.0,
+        period=6.0,
         actions=[
             Node(
                 package='atlas_sim',
