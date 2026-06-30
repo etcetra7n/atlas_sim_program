@@ -20,3 +20,6 @@ rosbag2*
 # Colcon custom files
 COLCON_IGNORE
 AMENT_IGNORE
+
+# Huge dataset folders
+rosbags/

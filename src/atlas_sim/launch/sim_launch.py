@@ -5,10 +5,28 @@ from launch.actions import TimerAction, LogInfo
 
 from ament_index_python.packages import get_package_share_directory
 
+from pathlib import Path
 import os
 import xacro
 
+data_dir = Path.cwd().parent.parent / "dataset" / "rosbags"
 world_name = "tugbot_depot"
+
+def get_next_folder():
+    base_dir = data_dir / world_name
+    base_dir.mkdir(parents=True, exist_ok=True)
+    numbers = [
+        int(folder.name.removeprefix("run_"))
+        for folder in base_dir.iterdir()
+        if (
+            folder.is_dir()
+            and folder.name.startswith("run_")
+            and folder.name.removeprefix("run_").isdigit()
+        )
+    ]
+    next_number = max(numbers, default=-1) + 1
+    return base_dir / f"run_{next_number:04d}"
+
 def generate_launch_description():
     pkg = get_package_share_directory(
         "atlas_sim"
@@ -51,7 +69,7 @@ def generate_launch_description():
     )
 
     spawn = TimerAction(
-        period=4.0,
+        period=5.0,
         actions=[
             Node(
                 package="ros_gz_sim",
@@ -106,33 +124,40 @@ def generate_launch_description():
         output="screen"
     )
 
-    cam_view = TimerAction(
-        period=5.0,
+    sim_window = TimerAction(
+        period=9.0,
         actions=[
             Node(
                 package='atlas_sim',
-                executable='cam_view',
-                name='cam_view',
+                executable='sim_window',
+                name='sim_window',
                 output='screen',
             ),
             LogInfo(
-                msg="Camera view started"
+                msg="Sim window started"
             ),
         ]
     )
 
-    controls = TimerAction(
-        period=6.0,
+    session_dir = str(get_next_folder())
+    rosbag = TimerAction(
+        period=10.0,
         actions=[
-            Node(
-                package='atlas_sim',
-                executable='controls',
-                name='controls',
-                output='screen',
+            ExecuteProcess(
+                cmd=[
+                    "ros2", "bag", "record",
+                    "-o", session_dir,
+
+                    "/cmd_vel",
+                    "/depth/image",
+                    "/depth/camera_info",
+                    "/odom",
+                    "/tf",
+                    "/tf_static"
+                ],
+                output="screen",
             ),
-            LogInfo(
-                msg="Controls started"
-            ),
+            LogInfo(msg=f"Recording to {session_dir}")
         ]
     )
 
@@ -143,6 +168,6 @@ def generate_launch_description():
         depth_bridge,
         camera_info_bridge,
         cmd_vel_bridge,
-        cam_view,
-        controls
+        sim_window,
+        rosbag
     ])

@@ -35,8 +35,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'cam_view = atlas_sim.cam_view:main',
-            "controls = atlas_sim.controls:main"
+            'sim_window = atlas_sim.sim_window:main'
         ],
     },
 )
