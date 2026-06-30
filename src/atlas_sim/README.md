@@ -4,11 +4,11 @@ A Mars rover simulation environment for collecting human navigation demonstratio
 
 ## Prerequisites
 
-- ROS 2 Humble
-- Gazebo Sim
-- `xacro`
-- `pynput`
-- `ros_gz_bridge`
+- ros2 humble
+- gazebo
+- ros_gz_bridge
+- pygame
+- xacro (_optional_)
 
 ## Build
 
