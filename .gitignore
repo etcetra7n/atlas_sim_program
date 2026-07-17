@@ -23,3 +23,7 @@ AMENT_IGNORE
 
 # Huge dataset folders
 rosbags/
+
+# Blender files (use glb or other formats instead)
+*.blend
+*.blend1

@@ -10,7 +10,7 @@ import os
 import xacro
 
 data_dir = Path.cwd().parent.parent / "dataset" / "rosbags"
-world_name = "tugbot_depot"
+world_name = "apollo11"
 
 def get_next_folder():
     base_dir = data_dir / world_name
@@ -52,7 +52,7 @@ def generate_launch_description():
         cmd=[
             "gz",
             "sim",
-            "-s",
+            #"-s",
             "-r",
             world
         ],
@@ -77,7 +77,10 @@ def generate_launch_description():
                 arguments=[
                     "-world", world_name,
                     "-name", "rover",
-                    "-topic", "robot_description"
+                    "-topic", "robot_description",
+                    "-x", "0.0",
+                    "-y", "0.0",
+                    "-z", "100.0"
                 ],
                 output="screen"
             ),

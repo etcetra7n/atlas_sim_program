@@ -9,16 +9,16 @@
   <visual>
     <origin rpy="1.5708 0 0"/>
     <geometry>
-      <cylinder radius="0.12"
-                length="0.08"/>
+      <cylinder radius="0.20"
+                length="0.10"/>
     </geometry>
   </visual>
 
   <collision>
     <origin rpy="1.5708 0 0"/>
     <geometry>
-      <cylinder radius="0.12"
-                length="0.08"/>
+      <cylinder radius="0.20"
+                length="0.10"/>
     </geometry>
   </collision>
 

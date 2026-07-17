@@ -8,15 +8,16 @@ package_name = 'atlas_sim'
 data_files = [
     ('share/ament_index/resource_index/packages', ['resource/atlas_sim']),
     ('share/atlas_sim', ['package.xml']),
-    (os.path.join('share', 'atlas_sim', 'launch'), glob('launch/*.py')),
-    (os.path.join('share', 'atlas_sim', 'urdf'), glob('urdf/*')),
+    (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
+    (os.path.join('share', package_name, 'urdf'), glob('urdf/*')),
+    (os.path.join("share", package_name, "meshes"), glob("meshes/*")),
 ]
 
 for path in Path("worlds").rglob("*"):
     if path.is_file():
         install_dir = os.path.join(
             "share",
-            "atlas_sim",
+            package_name,
             path.parent.as_posix()
         )
         data_files.append((install_dir, [str(path)]))

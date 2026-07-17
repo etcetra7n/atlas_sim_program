@@ -27,13 +27,13 @@
     <visual>
       <origin rpy="1.5708 0 0"/>
       <geometry>
-        <cylinder length="0.08" radius="0.12"/>
+        <cylinder length="0.10" radius="0.20"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="1.5708 0 0"/>
       <geometry>
-        <cylinder length="0.08" radius="0.12"/>
+        <cylinder length="0.10" radius="0.20"/>
       </geometry>
     </collision>
     <inertial>
@@ -52,13 +52,13 @@
     <visual>
       <origin rpy="1.5708 0 0"/>
       <geometry>
-        <cylinder length="0.08" radius="0.12"/>
+        <cylinder length="0.10" radius="0.20"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="1.5708 0 0"/>
       <geometry>
-        <cylinder length="0.08" radius="0.12"/>
+        <cylinder length="0.10" radius="0.20"/>
       </geometry>
     </collision>
     <inertial>
@@ -77,13 +77,13 @@
     <visual>
       <origin rpy="1.5708 0 0"/>
       <geometry>
-        <cylinder length="0.08" radius="0.12"/>
+        <cylinder length="0.10" radius="0.20"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="1.5708 0 0"/>
       <geometry>
-        <cylinder length="0.08" radius="0.12"/>
+        <cylinder length="0.10" radius="0.20"/>
       </geometry>
     </collision>
     <inertial>
@@ -102,13 +102,13 @@
     <visual>
       <origin rpy="1.5708 0 0"/>
       <geometry>
-        <cylinder length="0.08" radius="0.12"/>
+        <cylinder length="0.10" radius="0.20"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="1.5708 0 0"/>
       <geometry>
-        <cylinder length="0.08" radius="0.12"/>
+        <cylinder length="0.10" radius="0.20"/>
       </geometry>
     </collision>
     <inertial>

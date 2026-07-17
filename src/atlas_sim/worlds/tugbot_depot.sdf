@@ -394,6 +394,31 @@
       </link>
     </model>
 
+    <model name="destination_marker">
+    <static>true</static>
+
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>3.0</length>
+          </cylinder>
+        </geometry>
+
+        <material>
+          <ambient>1 0 0 0.3</ambient>
+          <diffuse>1 0 0 0.3</diffuse>
+          <emissive>1 0 0 0.8</emissive>
+        </material>
+
+        <transparency>0.4</transparency>
+      </visual>
+    </link>
+
+    <pose>5 2 1.5 0 0 0</pose>
+  </model>
+
 <!--    <include>
       <uri>
         https://fuel.ignitionrobotics.org/1.0/MovAi/models/Tugbot
