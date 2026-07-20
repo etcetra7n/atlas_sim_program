@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://nbsmi0ia5434"]
+
+[ext_resource type="Texture2D" uid="uid://dfjasj6xa4j6n" path="res://sand-ground-textured-2048.jpg" id="1_7ff10"]
+[ext_resource type="Script" uid="uid://blls460y3sa6d" path="res://rover.gd" id="1_8cnl3"]
+[ext_resource type="PackedScene" uid="uid://c42ieekrwqgjw" path="res://25042_Perseverance.glb" id="1_il8ej"]
+[ext_resource type="Script" uid="uid://dpw6pta7il7mj" path="res://terrain_generator.gd" id="4_7ff10"]
+[ext_resource type="Script" uid="uid://bj2wbdrjkitb3" path="res://data_collector.gd" id="5_44p52"]
+[ext_resource type="Script" uid="uid://ccayonvu8myf0" path="res://destination.gd" id="5_ahhn0"]
+
+[sub_resource type="Gradient" id="Gradient_8cnl3"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d4gi6"]
+noise_type = 2
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7ff10"]
+noise = SubResource("FastNoiseLite_d4gi6")
+color_ramp = SubResource("Gradient_8cnl3")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_44p52"]
+_shader_parameters = {
+&"bias_distance": null,
+&"blend_sharpness": null,
+&"depth_blur": null,
+&"enable_macro_variation": null,
+&"enable_projection": null,
+&"flat_terrain_normals": null,
+&"macro_variation1": null,
+&"macro_variation2": null,
+&"macro_variation_slope": null,
+&"mipmap_bias": null,
+&"noise1_angle": null,
+&"noise1_offset": null,
+&"noise1_scale": null,
+&"noise2_scale": null,
+&"noise_texture": SubResource("NoiseTexture2D_7ff10"),
+&"projection_threshold": null
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d4gi6"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_7ff10"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_d4gi6")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_44p52"]
+name = "sand-ground-textured-2048"
+albedo_texture = ExtResource("1_7ff10")
+normal_texture = ExtResource("1_7ff10")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_74wku"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_7ff10")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_44p52")])
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nooel"]
+size = Vector3(2.7061768, 2.2408752, 2.7834384)
+
+[sub_resource type="Environment" id="Environment_37qm5"]
+background_mode = 1
+background_color = Color(0.78039217, 0.47843137, 0.27058825, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.59391814, 0.52580905, 0.49713156, 1)
+sdfgi_read_sky_light = false
+glow_strength = 1.98
+fog_enabled = true
+fog_light_color = Color(0.9529412, 0.7647059, 0.64705884, 1)
+fog_light_energy = 0.5
+fog_sun_scatter = 0.2
+fog_density = 0.003
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.9543659, 0.76464593, 0.64590514, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nooel"]
+transparency = 1
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(1, 0, 0, 0.8745098)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_37qm5"]
+material = SubResource("StandardMaterial3D_nooel")
+top_radius = 1.7
+bottom_radius = 1.7
+height = 100.0
+
+[node name="root" type="Node3D" unique_id=221156524]
+
+[node name="Terrain3D" type="Terrain3D" parent="." unique_id=366965722]
+data_directory = "res://terrain"
+material = SubResource("Terrain3DMaterial_44p52")
+assets = SubResource("Terrain3DAssets_74wku")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Rover" type="RigidBody3D" parent="." unique_id=12476598]
+mass = 125.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.5, 0)
+inertia = Vector3(300, 125, 300)
+linear_damp = 2.5
+angular_damp = 2.5
+script = ExtResource("1_8cnl3")
+turn_torque = 2500.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rover" unique_id=166348771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008239746, 1.1174774, -0.041165948)
+shape = SubResource("BoxShape3D_nooel")
+
+[node name="WheelMarkers" type="Node3D" parent="Rover" unique_id=353501921]
+
+[node name="FR" type="Marker3D" parent="Rover/WheelMarkers" unique_id=1342554594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07, 0.265, 1.097)
+
+[node name="RayCast3D" type="RayCast3D" parent="Rover/WheelMarkers/FR" unique_id=579417767]
+target_position = Vector3(0, -0.6, 0)
+
+[node name="FL" type="Marker3D" parent="Rover/WheelMarkers" unique_id=1589232917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07, 0.265, 1.097)
+
+[node name="RayCast3D" type="RayCast3D" parent="Rover/WheelMarkers/FL" unique_id=871064907]
+target_position = Vector3(0, -0.6, 0)
+
+[node name="RL" type="Marker3D" parent="Rover/WheelMarkers" unique_id=1720597438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07, 0.265, -1.165)
+
+[node name="RayCast3D" type="RayCast3D" parent="Rover/WheelMarkers/RL" unique_id=1185161774]
+target_position = Vector3(0, -0.6, 0)
+
+[node name="RR" type="Marker3D" parent="Rover/WheelMarkers" unique_id=692652608]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07, 0.265, -1.165)
+
+[node name="RayCast3D" type="RayCast3D" parent="Rover/WheelMarkers/RR" unique_id=1861026406]
+target_position = Vector3(0, -0.6, 0)
+
+[node name="25042_Perseverance" parent="Rover" unique_id=1095302032 instance=ExtResource("1_il8ej")]
+
+[node name="ThirdPersonCam" type="Camera3D" parent="Rover" unique_id=1508551074]
+transform = Transform3D(-1, -9.313873e-10, -8.767391e-08, -2.9938366e-08, 0.9434724, 0.33145133, 8.240921e-08, 0.33145133, -0.9434724, 0, 2.8451684, -5.100456)
+fov = 60.0
+far = 1000.0
+
+[node name="CameraMain" type="Camera3D" parent="Rover" unique_id=198727313]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.445, 2.135, 0.8)
+current = true
+fov = 60.0
+far = 1000.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1857310969]
+transform = Transform3D(0.6467898, 0.5043616, -0.572086, 0, 0.75011104, 0.66131186, 0.7626684, -0.42772976, 0.48516417, 10, 10, 10)
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 1.211
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=352089445]
+environment = SubResource("Environment_37qm5")
+
+[node name="TerrainGenerator" type="Node3D" parent="." unique_id=950860605]
+script = ExtResource("4_7ff10")
+
+[node name="Destination" type="Node3D" parent="." unique_id=1858410542]
+script = ExtResource("5_ahhn0")
+
+[node name="Beam" type="MeshInstance3D" parent="Destination" unique_id=1088774393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 50, 28)
+mesh = SubResource("CylinderMesh_37qm5")
+
+[node name="DataCollector" type="Node3D" parent="." unique_id=1280339945]
+script = ExtResource("5_44p52")
+
+[node name="Timer" type="Timer" parent="DataCollector" unique_id=1992076834]

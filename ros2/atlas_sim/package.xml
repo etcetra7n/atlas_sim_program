@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>atlas_sim</name>
+  <version>0.0.1</version>
+  <description>A Mars rover simulation environment for collecting training data</description>
+
+  <maintainer email="etcetra7n@gmail.com">John Anchery</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+
+  <world name="apollo11">
+
+    <!-- Physics -->
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <plugin name='ignition::gazebo::systems::Physics' filename='libignition-gazebo-physics-system.so'/>
+    <plugin name='ignition::gazebo::systems::UserCommands' filename='libignition-gazebo-user-commands-system.so'/>
+    <plugin name='ignition::gazebo::systems::SceneBroadcaster' filename='libignition-gazebo-scene-broadcaster-system.so'/>
+    <plugin name='ignition::gazebo::systems::Imu' filename='ignition-gazebo-imu-system'/>
+    <plugin name='ignition::gazebo::systems::Sensors' filename='ignition-gazebo-sensors-system'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <!-- Scene -->
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.02 0.02 0.02 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <!-- Sun -->
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 1000 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>100000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -1</direction>
+    </light>
+
+    <!-- Terrain -->
+    <model name="apollo11">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name="terrain_link">
+
+        <collision name="collision">
+          <geometry>
+            <heightmap>
+              <uri>package://atlas_sim/worlds/heightmap_w2.png</uri>
+              <size>1024 1024 50</size>
+            </heightmap>
+          </geometry>
+
+          <surface>
+            <friction>
+              <ode>
+                <mu>2.0</mu>
+                <mu2>2.0</mu2>
+              </ode>
+            </friction>
+
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <cast_shadows>true</cast_shadows>
+
+          <geometry>
+            <heightmap>
+              <uri>package://atlas_sim/worlds/heightmap_w2.png</uri>
+              <size>1024 1024 50</size>
+
+              <texture>
+                <diffuse>package://atlas_sim/worlds/diffuse.jpg</diffuse>
+                <normal>package://atlas_sim/worlds/normal.jpg</normal>
+                <size>10</size>
+              </texture>
+
+              <blend>
+                <min_height>0</min_height>
+                <fade_dist>5</fade_dist>
+              </blend>
+            </heightmap>
+          </geometry>
+        </visual>
+        
+      </link>
+    </model>
+  </world>
+</sdf>
