@@ -84,15 +84,12 @@ try:
             print("Client disconnected.")
             break
         
-        print("Receiving packet...")
         packet_size = struct.unpack("<I", header)[0]
         packet = recv_exact(conn, packet_size)
 
         if packet is None:
-            print("Packet not received")
             break
 
-        print("Parsing state...")
         state_values = struct.unpack("<7f", packet[:STATE_SIZE])
         state = torch.tensor(
             [state_values],
@@ -113,9 +110,9 @@ try:
         steer = prediction[0, 2].item()
 
         print(
-            f"Forward={mv_fwd:.3f} "
-            f"Right={mv_right:.3f} "
-            f"Steer={steer:.3f}"
+            f"fwd={mv_fwd:.3f} "
+            f"right={mv_right:.3f} "
+            f"steer={steer:.3f}"
         )
 
         conn.sendall(

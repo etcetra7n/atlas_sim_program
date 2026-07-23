@@ -7,7 +7,7 @@ extends Node3D
 signal destination_generated(position: Vector3)
 var destination_pos = null
  
-const MAX_RADIUS := 1 # radius in m
+const MAX_RADIUS := 100 # radius in m
 const BEAM_HEIGHT := 50
 
 func _ready():
