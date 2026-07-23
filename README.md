@@ -12,3 +12,4 @@ to train a mapless autonomous navigation model for mars like terrain
 - torch
 - torchvision
 - tqdm
+- jupyterlab
