@@ -13,7 +13,7 @@ to train a mapless autonomous navigation model for mars like terrain
 - tqdm
 - jupyterlab
 
-## How to run the simulation
+## How to collect training data from simulation
 1. Open the `godot` folder in Godot game engine and hit play
 2. Use WASD to move in the 4 directions. Use K and L key to rotate left and right respectively
 3. The goal is to move the rover to reach the big red beacon light
