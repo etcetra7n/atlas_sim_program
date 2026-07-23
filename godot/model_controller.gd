@@ -31,11 +31,9 @@ func _ready():
 	dest = destination.destination_pos
 
 	await RenderingServer.frame_post_draw
-	print("ff")
 	
 	while tcp.get_status() == StreamPeerTCP.STATUS_CONNECTING:
 		tcp.poll()
-		print(tcp.get_status())
 		await get_tree().process_frame
 	print("Connected! Status =", tcp.get_status())
 	
