@@ -6,8 +6,8 @@ extends Node3D
 
 signal destination_generated(position: Vector3)
 var destination_pos = null
-
-const MAX_RADIUS := 100 # radius in m
+ 
+const MAX_RADIUS := 1 # radius in m
 const BEAM_HEIGHT := 50
 
 func _ready():
@@ -21,6 +21,6 @@ func _ready():
 		await terrain_generator.terrain_generated
 	var y = terrain.data.get_height(Vector3(x, 0.0, z))
 	
-	destination_pos = Vector3(x, y - 5.0, z)
+	destination_pos = Vector3(x, y - 8.0, z)
 	global_position = destination_pos
 	destination_generated.emit(destination_pos)

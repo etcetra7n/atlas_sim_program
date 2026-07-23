@@ -14,6 +14,9 @@ for run_dir in sorted(dataset_root.glob("run_*")):
         continue
 
     frames_dir = run_dir / "frames"
+    if frames_dir.exists():
+        print(f"Skipping {run_dir.name} (frames already extracted)")
+        continue
     frames_dir.mkdir(exist_ok=True)
 
     print(f"Processing {run_dir.name}...")

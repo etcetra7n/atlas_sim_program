@@ -1,5 +1,7 @@
 extends Node
 
+@export var collect_data:= false
+
 @onready var destination = $"../Destination"
 @onready var rover = $"../Rover"
 @onready var viewport: Viewport = get_viewport() #$"../Rover/SubViewport"
@@ -20,6 +22,8 @@ var mv_right: int = 0
 var steer: int = 0
 
 func _ready():
+	if !collect_data:
+		return
 	var dataset_root = ProjectSettings.globalize_path(DATASET_DIR)
 	DirAccess.make_dir_recursive_absolute(dataset_root)
 	

@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://nbsmi0ia5434"]
+[gd_scene format=3 uid="uid://do03aok3o6u02"]
 
 [ext_resource type="Texture2D" uid="uid://dfjasj6xa4j6n" path="res://sand-ground-textured-2048.jpg" id="1_7ff10"]
 [ext_resource type="Script" uid="uid://blls460y3sa6d" path="res://rover.gd" id="1_8cnl3"]
 [ext_resource type="PackedScene" uid="uid://c42ieekrwqgjw" path="res://25042_Perseverance.glb" id="1_il8ej"]
 [ext_resource type="Script" uid="uid://dpw6pta7il7mj" path="res://terrain_generator.gd" id="4_7ff10"]
+[ext_resource type="Script" uid="uid://c1j3aa8fu0wxw" path="res://model_controller.gd" id="4_ioov1"]
 [ext_resource type="Script" uid="uid://bj2wbdrjkitb3" path="res://data_collector.gd" id="5_44p52"]
 [ext_resource type="Script" uid="uid://ccayonvu8myf0" path="res://destination.gd" id="5_ahhn0"]
 
@@ -75,7 +76,11 @@ mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_7ff10")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_44p52")])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nooel"]
-size = Vector3(2.7061768, 2.2408752, 2.7834384)
+size = Vector3(1.6119504, 1.5039873, 3.8242178)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_37qm5"]
+height = 0.4440918
+radius = 0.34277344
 
 [sub_resource type="Environment" id="Environment_37qm5"]
 background_mode = 1
@@ -121,10 +126,9 @@ inertia = Vector3(300, 125, 300)
 linear_damp = 2.5
 angular_damp = 2.5
 script = ExtResource("1_8cnl3")
-turn_torque = 2500.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Rover" unique_id=166348771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008239746, 1.1174774, -0.041165948)
+[node name="CollisionChassis" type="CollisionShape3D" parent="Rover" unique_id=166348771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010199785, 1.4099164, 0.33761877)
 shape = SubResource("BoxShape3D_nooel")
 
 [node name="WheelMarkers" type="Node3D" parent="Rover" unique_id=353501921]
@@ -165,6 +169,27 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.4
 current = true
 fov = 60.0
 far = 1000.0
+
+[node name="CollissionWheelFR" type="CollisionShape3D" parent="Rover" unique_id=1369023951]
+transform = Transform3D(-3.278354e-08, 0.75, 0, -0.75, -3.278354e-08, 0, 0, 0, 0.75, -1.0622941, 0.26160243, 1.0938607)
+shape = SubResource("CylinderShape3D_37qm5")
+
+[node name="CollissionWheelRR" type="CollisionShape3D" parent="Rover" unique_id=2039067787]
+transform = Transform3D(-3.278354e-08, 0.75, 0, -0.75, -3.278354e-08, 0, 0, 0, 0.75, -1.0622941, 0.26160243, -1.1650162)
+shape = SubResource("CylinderShape3D_37qm5")
+
+[node name="CollissionWheelRL" type="CollisionShape3D" parent="Rover" unique_id=406855981]
+transform = Transform3D(-3.278354e-08, 0.75, 0, -0.75, -3.278354e-08, 0, 0, 0, 0.75, 1.0634928, 0.26160243, -1.1650162)
+shape = SubResource("CylinderShape3D_37qm5")
+
+[node name="CollissionWheelFL" type="CollisionShape3D" parent="Rover" unique_id=1071767461]
+transform = Transform3D(-3.278354e-08, 0.75, 0, -0.75, -3.278354e-08, 0, 0, 0, 0.75, 1.0624459, 0.26160243, 1.0938607)
+shape = SubResource("CylinderShape3D_37qm5")
+
+[node name="ModelController" type="Node3D" parent="Rover" unique_id=1816606590]
+script = ExtResource("4_ioov1")
+
+[node name="ModelTimer" type="Timer" parent="Rover/ModelController" unique_id=842516385]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1857310969]
 transform = Transform3D(0.6467898, 0.5043616, -0.572086, 0, 0.75011104, 0.66131186, 0.7626684, -0.42772976, 0.48516417, 10, 10, 10)
