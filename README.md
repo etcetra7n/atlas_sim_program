@@ -14,6 +14,10 @@ to train a mapless autonomous navigation model for mars like terrain
 - jupyterlab
 
 ## How to collect training data from simulation
+_A trained model weights are already available in `EfficientNet-B0/weights/AtlasEffB0_v0.pt`, so you don't have to collect or 
+train anything again. Instructions for data collection and training are still provided for anyone who wants to reproduce the 
+results, retrain the model, or experiment with different datasets_
+
 1. Open the `godot` folder in Godot game engine and hit play
 2. Use WASD to move in the 4 directions. Use K and L key to rotate left and right respectively
 3. The goal is to move the rover to reach the big red beacon light
