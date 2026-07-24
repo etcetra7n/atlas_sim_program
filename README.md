@@ -14,8 +14,8 @@ to train a mapless autonomous navigation model for mars like terrain
 - jupyterlab
 
 ## How to collect training data from simulation
-_A trained model weights are already available in `EfficientNet-B0/weights/AtlasEffB0_v0.pt`, so you don't have to collect or 
-train anything again. Instructions for data collection and training are still provided for anyone who wants to reproduce the 
+_A training dataset is already available in [huggingface](https://huggingface.co/datasets/etcetra7n/atlas-v1), so you don't have to collect again. 
+Instructions for data collection and training are still provided for anyone who wants to reproduce the 
 results, retrain the model, or experiment with different datasets_
 
 1. Open the `godot` folder in Godot game engine and hit play
@@ -27,6 +27,10 @@ results, retrain the model, or experiment with different datasets_
 > If the training doesn't collect any data, try changing the `DataCollector/collect_data` boolean parameter in godot to true
 
 ## How to train the model
+_A trained model weights are already available in `EfficientNet-B0/weights/AtlasEffB0_v0.pt`, so you don't have to
+train anything again. Instructions for data training are still provided for anyone who wants to reproduce the 
+results, retrain the model, or experiment with different datasets_
+
 1. Run `dataset/process_image_data.py`
 2. Run `dataset/delete_data_bin_files.py`
 3. Open jupyterlab in `EfficientNet-B0` folder

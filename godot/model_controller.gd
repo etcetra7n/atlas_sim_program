@@ -7,7 +7,7 @@ const PORT := 5000
 @onready var destination = $"../../Destination"
 @onready var viewport: Viewport = get_viewport()
 
-@export var use_model = true
+@export var use_model = false
 @export_range(1, 60) var inference_fps := 15
 
 var tcp := StreamPeerTCP.new()

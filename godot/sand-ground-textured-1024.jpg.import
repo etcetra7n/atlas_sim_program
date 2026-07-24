@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfjasj6xa4j6n"
-path.s3tc="res://.godot/imported/sand-ground-textured-2048.jpg-c9e8fdc535c59b3e5073a689b3079b4b.s3tc.ctex"
+uid="uid://cxyjmvfw14ptp"
+path.s3tc="res://.godot/imported/sand-ground-textured-1024.jpg-94985dd688bad51a074720130835e74b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sand-ground-textured-2048.jpg"
-dest_files=["res://.godot/imported/sand-ground-textured-2048.jpg-c9e8fdc535c59b3e5073a689b3079b4b.s3tc.ctex"]
+source_file="res://sand-ground-textured-1024.jpg"
+dest_files=["res://.godot/imported/sand-ground-textured-1024.jpg-94985dd688bad51a074720130835e74b.s3tc.ctex"]
 
 [params]
 
