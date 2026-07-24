@@ -148,7 +148,7 @@ fov = 70.0
 far = 1000.0
 
 [node name="CameraMain" type="Camera3D" parent="Rover" unique_id=198727313]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.445, 2.135, 0.8)
+transform = Transform3D(-1, 0, 8.742278e-08, 5.457926e-09, 0.9980494, 0.062431403, -8.7252246e-08, 0.062431403, -0.9980494, -0.445, 2.135, 0.8)
 current = true
 fov = 70.0
 far = 1000.0
