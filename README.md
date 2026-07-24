@@ -3,6 +3,12 @@
 A Mars rover simulation environment for collecting human navigation demonstrations in Godot game engine environment
 to train a mapless autonomous navigation model for mars like terrain
 
+With this repo you can do the following:
+- Play a game/simulation with randomly generated mars-like terrain and a rover controllable by WASD and KL keys
+- Collect navigation data from the user input
+- Train a EfficientNet-B0 navigation model that imitates user-like motion
+- Run the trained model in the simulation to test the model
+
 ## Requirements
 - godot
 - Terrain3D by Tokisan Games (godot plugin)
